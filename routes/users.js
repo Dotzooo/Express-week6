@@ -1,16 +1,28 @@
 var express = require('express')
 var router = express.Router()
 
-const handleErrorAsync = require("../service/handleErrorAsync");
 const UserController = require('../controllers/users')
 
-// 取得所有用戶
-router.get('/', handleErrorAsync(UserController.getUser))
+const handleErrorAsync = require("../service/handleErrorAsync")
+const { isAuth } = require('../service/isAuth')
 
-// 登入
-router.post('/', handleErrorAsync(UserController.login))
+// 取得所有用戶
+router.get('/', isAuth, handleErrorAsync(UserController.getUser))
+
+// 用戶登入
+router.post('/singin', handleErrorAsync(UserController.singin))
 
 // 用戶註冊
-router.post('/signin', handleErrorAsync(UserController.singin))
+router.post('/singup', handleErrorAsync(UserController.singup))
+
+// 重設密碼
+router.post('/updatePassword', isAuth, handleErrorAsync(UserController.updatePassword))
+
+// 取得個人資料
+router.get('/profile', isAuth, handleErrorAsync(UserController.getProfile))
+
+// 更新個人資料
+router.patch('/profile', isAuth, handleErrorAsync(UserController.updateProfile))
+
 
 module.exports = router
