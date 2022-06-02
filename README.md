@@ -1,12 +1,15 @@
 # Express
 
-## Express middleware 異常狀態處理
+## 第六週：JWT 身份驗證機制
 
-## 主線任務，將第四週期中考作業加上更嚴謹的錯誤狀態：
-1.設計一個 middleware，讓 controller 程式碼裡面沒有 try catch
+## 主線任務，設計API
+LV1：設計五個 API
+    POST：{url}/users/sign_up：註冊
+    POST：{url}/users/sign_in：登入
+    POST：{url}/users/updatePassword: 重設密碼
+    GET：{url}/users/profile: 取得個人資料，需設計 isAuth middleware。
+    PATCH：{url}/users/profile: 更新個人資料，需設計 isAuth middleware
 
-2.透過環境變數執行指令加上 dev、production 的客製化回饋
-
-3.承第二點，請觀看此張圖，確保你的後端語言有客製化各種錯誤狀態，包含 NPM 的錯誤訊息客製化
-
-4.透過 node.js uncaughtException、unhandledRejection 來捕捉預期外的錯
+LV2：調整第四週 API，都加上登入驗證的 middleware
+    POST：{url}/posts/：張貼個人動態
+    GET：{url}/posts/：觀看所有動態
